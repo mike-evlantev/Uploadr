@@ -1,0 +1,19 @@
+{
+  "name": "uploadr",
+  "version": "1.0.0",
+  "description": "Upload files to MongoDB (GridFS)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike-evlantev/Uploadr.git"
+  },
+  "author": "Mike Evlantev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mike-evlantev/Uploadr/issues"
+  },
+  "homepage": "https://github.com/mike-evlantev/Uploadr#readme"
+}
