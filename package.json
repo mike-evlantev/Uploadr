@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/mike-evlantev/Uploadr/issues"
   },
-  "homepage": "https://github.com/mike-evlantev/Uploadr#readme"
+  "homepage": "https://github.com/mike-evlantev/Uploadr#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "gridfs-stream": "^1.1.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.10.10",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^4.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  }
 }
