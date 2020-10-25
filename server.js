@@ -5,7 +5,8 @@ require('dotenv').config();
 
 const app = express();
 const uploadRouter = require('./routes/upload');
-const connectDb = require("./config/db");
+const filesRouter = require('./routes/files')
+const { connectDb } = require("./config/db");
 
 // Connect to Database
 connectDb();
@@ -15,10 +16,8 @@ app.use(express.json({ extended: false })); // Allows to accept data within a bo
 app.use(methodOverride('_method'));
 
 // Routes
-// app.get('/', function(req, res) {
-//   res.sendFile(path.join(__dirname + '/index.html'));
-// });
 app.use('/', uploadRouter);
+app.use('/files', filesRouter);
 
 // Server static (react) assets in production
 if (process.env.NODE_ENV === "production") {
