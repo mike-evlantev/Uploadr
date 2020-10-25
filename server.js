@@ -16,9 +16,9 @@ const app = express();
 app.use(express.json({ extended: false })); // Allows to accept data within a body of a request (req.body)
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('Uploadr')
-})
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
 // app.use('/api/auth', authRouter);
 // app.use('/api/documents', docRouter);
 // app.use('/api/transactions', transactionsRouter);
