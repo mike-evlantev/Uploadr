@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Grid = require('gridfs-stream');
 require("dotenv").config();
 
+let gfs;
 const connectDb = () => {
   try {
     // Create connection
@@ -10,7 +11,6 @@ const connectDb = () => {
       useUnifiedTopology: true
     });
     // Init gfs
-    let gfs;
     conn.once('open', () => {
       gfs = Grid(conn.db, mongoose.mongo);
       gfs.collection(process.env.UPLOADS_COLLECTION_NAME); // uploads.chunks and uploads.files
@@ -22,4 +22,6 @@ const connectDb = () => {
   }
 };
 
-module.exports = connectDb;
+const getGfs = () => gfs;
+
+module.exports = { connectDb, getGfs };
