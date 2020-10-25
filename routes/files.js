@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getGfs } = require("../config/db");
+require('dotenv').config();
 
 // @route   GET /files
 // @desc    Get all files in the collection
@@ -38,6 +39,24 @@ router.get('/:filename', (req, res) => {
         }
         res.json(file);
       });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   DELETE /files/:id
+// @desc    Delete file by id
+// @access  Public
+router.delete('/:id', (req, res) => {
+  try {
+    const gfs = getGfs();
+    gfs.remove({_id: req.params.id, root: process.env.UPLOADS_COLLECTION_NAME}, (err, gridStore) => {
+      if (err) {
+        return res.status(404).json(err);
+      }
+      res.redirect('/');
+    });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
