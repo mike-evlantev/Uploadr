@@ -5,7 +5,8 @@ require('dotenv').config();
 
 const app = express();
 const uploadRouter = require('./routes/upload');
-const filesRouter = require('./routes/files')
+const filesRouter = require('./routes/files');
+const imagesRouter = require('./routes/images');
 const { connectDb } = require("./config/db");
 
 // Connect to Database
@@ -18,6 +19,7 @@ app.use(methodOverride('_method'));
 // Routes
 app.use('/', uploadRouter);
 app.use('/files', filesRouter);
+app.use('/images', imagesRouter);
 
 // Server static (react) assets in production
 if (process.env.NODE_ENV === "production") {
