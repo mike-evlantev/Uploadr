@@ -20,7 +20,8 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/upload', upload.single('file'), (req,res) => { // 'file' mathces the input type file with name 'file'. See index.html
   try {
-    res.json({file: req.file});
+    //res.json({file: req.file});
+    res.redirect('/');
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
