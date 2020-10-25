@@ -1,28 +1,24 @@
-const path = require("path");
+const path = require('path');
 const express = require('express');
-//const connectDb = require("./config/db");
-require("dotenv").config();
+const methodOverride = require('method-override');
+require('dotenv').config();
 
 const app = express();
-// const authRouter = require('./routes/auth');
-// const docRouter = require('./routes/documents');
-// const transactionsRouter = require('./routes/transactions');
-// const usersRouter = require('./routes/users');
+const uploadRouter = require('./routes/upload');
+const connectDb = require("./config/db");
 
-// Database
-//connectDb();
+// Connect to Database
+connectDb();
 
 // Init middleware
 app.use(express.json({ extended: false })); // Allows to accept data within a body of a request (req.body)
+app.use(methodOverride('_method'));
 
 // Routes
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
-});
-// app.use('/api/auth', authRouter);
-// app.use('/api/documents', docRouter);
-// app.use('/api/transactions', transactionsRouter);
-// app.use('/api/users', usersRouter);
+// app.get('/', function(req, res) {
+//   res.sendFile(path.join(__dirname + '/index.html'));
+// });
+app.use('/', uploadRouter);
 
 // Server static (react) assets in production
 if (process.env.NODE_ENV === "production") {
