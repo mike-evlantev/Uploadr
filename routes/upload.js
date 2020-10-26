@@ -8,7 +8,7 @@ const upload = require('../middleware/upload');
 // @access  Public
 router.get('/', (req, res) => {
   try {
-    res.sendFile(path.join(__dirname + '../../index.html'));
+    res.redirect('/');
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 router.post('/upload', upload.single('file'), (req,res) => { // 'file' mathces the input type file with name 'file'. See index.html
   try {
     //res.json({file: req.file});
-    res.redirect('/');
+    res.status(200).json(req.file);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
